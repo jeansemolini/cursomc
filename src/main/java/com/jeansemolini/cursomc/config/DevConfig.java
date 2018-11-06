@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 
 import com.jeansemolini.cursomc.services.DBService;
 import com.jeansemolini.cursomc.services.EmailService;
-import com.jeansemolini.cursomc.services.MockEmailService;
 import com.jeansemolini.cursomc.services.SmtpEmailService;
 
 @Configuration
