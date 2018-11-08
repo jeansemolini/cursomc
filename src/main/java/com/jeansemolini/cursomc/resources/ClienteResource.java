@@ -47,7 +47,7 @@ public class ClienteResource {
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+		
 	@PutMapping("/{id}")
 	private ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
 		Cliente obj = service.fromDTO(objDto);
@@ -56,12 +56,14 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	private ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping
 	private ResponseEntity<List<ClienteDTO>> findAll(){
 		List<Cliente> list = service.findAll();
@@ -70,6 +72,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/page")
 	private ResponseEntity<Page<ClienteDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
