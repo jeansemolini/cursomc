@@ -25,11 +25,5 @@ public class MockEmailService extends AbstractEmailService {
 		LOG.info(msg.toString());
 		LOG.info("Email enviado");
 	}
-
-	@Override
-	public void sendNewPasswordEmail(Cliente cliente, String newPass) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

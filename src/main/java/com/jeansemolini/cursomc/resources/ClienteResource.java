@@ -33,14 +33,14 @@ public class ClienteResource {
 	private ClienteService service;
 
 	@GetMapping("/{id}")
-	private ResponseEntity<Cliente> find(@PathVariable Integer id){
+	public ResponseEntity<Cliente> find(@PathVariable Integer id){
 		Cliente obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	private ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
 		Cliente obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -49,7 +49,7 @@ public class ClienteResource {
 	}
 		
 	@PutMapping("/{id}")
-	private ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
 		Cliente obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
@@ -58,14 +58,14 @@ public class ClienteResource {
 
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
-	private ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping
-	private ResponseEntity<List<ClienteDTO>> findAll(){
+	public ResponseEntity<List<ClienteDTO>> findAll(){
 		List<Cliente> list = service.findAll();
 		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 
@@ -74,7 +74,7 @@ public class ClienteResource {
 	
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/page")
-	private ResponseEntity<Page<ClienteDTO>> findPage(
+	public ResponseEntity<Page<ClienteDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 

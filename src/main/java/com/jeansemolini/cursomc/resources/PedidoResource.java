@@ -27,14 +27,14 @@ public class PedidoResource {
 	private PedidoService service;
 
 	@GetMapping("/{id}")
-	private ResponseEntity<Pedido> find(@PathVariable Integer id){
+	public ResponseEntity<Pedido> find(@PathVariable Integer id){
 		Pedido obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	private ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -42,7 +42,7 @@ public class PedidoResource {
 	}
 	
 	@GetMapping
-	private ResponseEntity<Page<Pedido>> findPage(
+	public ResponseEntity<Page<Pedido>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="instante") String orderBy, 

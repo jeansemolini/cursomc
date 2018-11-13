@@ -24,14 +24,14 @@ public class ProdutoResource {
 	private ProdutoService service;
 
 	@GetMapping("/{id}")
-	private ResponseEntity<Produto> find(@PathVariable Integer id){
+	public ResponseEntity<Produto> find(@PathVariable Integer id){
 		Produto obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@GetMapping
-	private ResponseEntity<Page<ProdutoDTO>> findPage(
+	public ResponseEntity<Page<ProdutoDTO>> findPage(
 			@RequestParam(value="nome", defaultValue="") String nome, 
 			@RequestParam(value="categorias", defaultValue="") String categorias, 
 			@RequestParam(value="page", defaultValue="0") Integer page, 
